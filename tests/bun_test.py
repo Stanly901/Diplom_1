@@ -1,12 +1,15 @@
 import pytest
 from praktikum.bun import Bun
+from data.test_data import BUNS
 
-@pytest.mark.parametrize("name, price", [
-    ("Sesame", 2.5),
-    ("Brioche", 3.0),
-    ("Potato", 1.99),
-])
-def test_bun_attributes(name, price):
-    bun = Bun(name, price)
-    assert bun.get_name() == name
-    assert bun.get_price() == price
+class TestBun:
+
+    @pytest.mark.parametrize("name, price", BUNS)
+    def test_get_name(self, name, price):
+        bun = Bun(name, price)
+        assert bun.get_name() == name
+
+    @pytest.mark.parametrize("name, price", BUNS)
+    def test_get_price(self, name, price):
+        bun = Bun(name, price)
+        assert bun.get_price() == price
